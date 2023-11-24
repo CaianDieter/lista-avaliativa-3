@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
+#include <ctype.h>
 
 int validaplaca(char *placa);
 
@@ -15,14 +16,32 @@ int main()
 
     scanf("%s", placa);
     scanf("%s", dia);
-    if (validaplaca(placa) && validadiasemana(dia) && ultimodiaplacacomdiasemana(dia, placa))
-    {
-        printf("%s pode circular %s", placa, dia);
+    if(!validaplaca(placa) && !validadiasemana(dia)){
+        printf("Placa invalida\nDia da semana invalido");
     }
-    else
-    {
-        printf("nao deu nao ");
+    else if (!validaplaca(placa)){
+         printf("Placa invalida");
+
     }
+    else if (!validadiasemana(dia)){
+          printf("Dia da semana invalido");
+
+    }
+    else if(ultimodiaplacacomdiasemana(dia,placa)){
+
+        printf("%s nao pode circular %s",placa,strlwr(dia));
+
+    }else if(strcmp(dia,"SABADO") == 0 || strcmp(dia,"DOMINGO") == 0){
+        printf("Nao ha proibicao no fim de semana");
+        
+    }
+    else if(!ultimodiaplacacomdiasemana(dia,placa)){
+        printf("%s pode circular %s",placa,strlwr(dia));
+
+    }
+        
+    
+   
 
     return 0;
 }
@@ -30,13 +49,13 @@ int main()
 int validaplaca(char *placa)
 {
 
-    if (strlen(placa) == 9 && isalpha(placa[0]) && isalpha(placa[1]) && isalpha(placa[2]) &&
+    if (strlen(placa) == 8 && isalpha(placa[0]) && isalpha(placa[1]) && isalpha(placa[2]) &&
         placa[3] == '-' && isdigit(placa[4]) && isdigit(placa[5]) && isdigit(placa[6]) && isdigit(placa[7]))
     {
         return 1;
     }
     else if (strlen(placa) == 7 && isalpha(placa[0]) && isalpha(placa[1]) && isalpha(placa[2]) &&
-             isalpha(placa[3]) && isdigit(placa[4]) && isdigit(placa[5]) && isdigit(placa[6]))
+             isdigit(placa[3]) && isalpha(placa[4]) && isdigit(placa[5]) && isdigit(placa[6]))
     {
         return 1;
     }
@@ -59,7 +78,10 @@ int validadiasemana(char *dia)
 int ultimodiaplacacomdiasemana(char dia[], char placa[])
 {
     int x = strlen(placa);
+   
     int ultimoDigito = placa[x - 1] - '0'; 
+   
+
 
     if ((ultimoDigito == 0 || ultimoDigito == 1) && strcmp(dia, "SEGUNDA-FEIRA") == 0)
     {
