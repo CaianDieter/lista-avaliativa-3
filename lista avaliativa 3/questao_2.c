@@ -13,7 +13,7 @@ int main(){
     V += aportemensal * (1 + taxaderetorno)
      * ((pow((1 + taxaderetorno),i + 1) - 1 )/ taxaderetorno);
 
-    printf("Montante ao fim do mes %d: R$ %.2lf\n",i +1,V);
+    printf("Montante ao fim do mes %d: R$ %.2lf\n",i + 1,V);
     }
 
     return 0;

@@ -17,26 +17,26 @@ int main()
     scanf("%s", placa);
     scanf("%s", dia);
     if(!validaplaca(placa) && !validadiasemana(dia)){
-        printf("Placa invalida\nDia da semana invalido");
+        printf("Placa invalida\nDia da semana invalido\n");
     }
     else if (!validaplaca(placa)){
-         printf("Placa invalida");
+         printf("Placa invalida\n");
 
     }
     else if (!validadiasemana(dia)){
-          printf("Dia da semana invalido");
+          printf("Dia da semana invalido\n");
 
     }
     else if(ultimodiaplacacomdiasemana(dia,placa)){
 
-        printf("%s nao pode circular %s",placa,strlwr(dia));
+        printf("%s nao pode circular %s\n",placa,strlwr(dia));
 
     }else if(strcmp(dia,"SABADO") == 0 || strcmp(dia,"DOMINGO") == 0){
-        printf("Nao ha proibicao no fim de semana");
+        printf("Nao ha proibicao no fim de semana\n");
         
     }
     else if(!ultimodiaplacacomdiasemana(dia,placa)){
-        printf("%s pode circular %s",placa,strlwr(dia));
+        printf("%s pode circular %s\n",placa,strlwr(dia));
 
     }
         
